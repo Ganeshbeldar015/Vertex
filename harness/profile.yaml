@@ -1,0 +1,34 @@
+# profile.yaml — Project Profile derived from raw.md
+project_type: web-app
+languages:
+  - python
+  - typescript
+frameworks:
+  - fastapi
+  - react
+  - nextjs
+package_manager: npm, pip
+has_ui: true
+has_db: true
+has_network_integrations: true
+handles_sensitive_data: true
+deploy_target: cloud
+team_mode: solo
+ci: github-actions
+parallelism: 3
+sprint_length: by-task
+confidence: 0.95
+enabled_roles:
+  - orchestrator
+  - po-spec
+  - designer
+  - tech-lead
+  - test-author
+  - builder
+  - reviewer
+  - security
+  - qa
+  - scribe
+  - librarian
+disabled_roles: []
+mcp_preset: sengra

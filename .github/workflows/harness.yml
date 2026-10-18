@@ -1,0 +1,23 @@
+name: Harness Integrity (G0)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: pip install pytest
+      - name: Run Harness Linter
+        run: python scripts/check_harness.py
+      - name: Run Harness Unit Tests
+        run: pytest tests/harness

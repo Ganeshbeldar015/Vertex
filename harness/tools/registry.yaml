@@ -1,0 +1,159 @@
+# registry.yaml — Tool & Capability Inventory
+tools:
+  - name: file_read
+    kind: builtin
+    purpose: Read repository files
+    allowed_roles:
+      - orchestrator
+      - po-spec
+      - designer
+      - tech-lead
+      - test-author
+      - builder
+      - reviewer
+      - security
+      - qa
+      - scribe
+      - librarian
+    approval: auto
+
+  - name: file_write
+    kind: builtin
+    purpose: Write or edit files within role-scoped allow-lists
+    allowed_roles:
+      - orchestrator
+      - po-spec
+      - designer
+      - tech-lead
+      - test-author
+      - builder
+      - reviewer
+      - security
+      - qa
+      - scribe
+      - librarian
+    approval: auto
+    guard: scripts/guard_paths.py
+
+  - name: bash
+    kind: bash
+    purpose: Execute shell commands within sandbox constraints
+    allowed_roles:
+      - orchestrator
+      - builder
+      - test-author
+      - qa
+      - security
+    approval: auto
+    sandbox: harness/tools/sandbox.md
+
+  - name: git
+    kind: bash
+    purpose: Version control operations
+    allowed_roles:
+      - orchestrator
+      - builder
+    approval: auto
+    forbid:
+      - "push --force"
+      - "reset --hard origin"
+
+  - name: package_install
+    kind: bash
+    purpose: Install project dependencies
+    allowed_roles:
+      - builder
+    approval: confirm
+
+  - name: deploy
+    kind: bash
+    purpose: Production or staging deployment
+    allowed_roles: []
+    approval: forbidden
+
+  # MCP Tools (Preset: sengra)
+  - name: context7
+    kind: mcp
+    purpose: Up-to-date documentation on library APIs
+    allowed_roles:
+      - orchestrator
+      - po-spec
+      - designer
+      - tech-lead
+      - test-author
+      - builder
+      - reviewer
+      - security
+      - qa
+      - scribe
+      - librarian
+    approval: auto
+
+  - name: falkordb-readonly
+    kind: mcp
+    purpose: Read-only OpenCypher queries against graph database
+    allowed_roles:
+      - orchestrator
+      - po-spec
+      - designer
+      - tech-lead
+      - test-author
+      - builder
+      - reviewer
+      - qa
+      - security
+    approval: auto
+
+  - name: falkordb
+    kind: mcp
+    purpose: Dev-only write graph database access
+    allowed_roles:
+      - builder
+    approval: confirm
+
+  - name: sengra-mcp
+    kind: mcp
+    purpose: Fraud investigation tools (graph.*, algo.*, action.*)
+    allowed_roles:
+      - orchestrator
+      - qa
+      - builder
+    approval: auto
+
+  - name: semgrep
+    kind: mcp
+    purpose: Static analysis and security scanner
+    allowed_roles:
+      - builder
+      - reviewer
+      - security
+      - qa
+    approval: auto
+
+  - name: playwright
+    kind: mcp
+    purpose: End-to-end browser automation for UI verification
+    allowed_roles:
+      - test-author
+      - builder
+      - qa
+    approval: auto
+
+  - name: chrome-devtools
+    kind: mcp
+    purpose: Frontend performance and runtime diagnostics
+    allowed_roles:
+      - builder
+      - qa
+    approval: auto
+
+  - name: github
+    kind: mcp
+    purpose: Pull request and CI check inspection
+    allowed_roles:
+      - orchestrator
+      - reviewer
+      - qa
+      - security
+      - scribe
+    approval: auto

@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      }
+    },
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}"
+      }
+    },
+    "semgrep": {
+      "command": "semgrep",
+      "args": ["mcp"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--headless"]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest", "--slim", "--headless", "--no-usage-statistics"]
+    },
+    "falkordb-readonly": {
+      "command": "npx",
+      "args": ["-y", "@falkordb/mcpserver@latest"],
+      "env": {
+        "FALKORDB_HOST": "localhost",
+        "FALKORDB_PORT": "6379",
+        "FALKORDB_PASSWORD": "${FALKORDB_PASSWORD}",
+        "FALKORDB_DEFAULT_READONLY": "true"
+      }
+    },
+    "falkordb": {
+      "command": "npx",
+      "args": ["-y", "@falkordb/mcpserver@latest"],
+      "env": {
+        "FALKORDB_HOST": "localhost",
+        "FALKORDB_PORT": "6379",
+        "FALKORDB_PASSWORD": "${FALKORDB_PASSWORD}",
+        "FALKORDB_DEFAULT_READONLY": "false"
+      }
+    },
+    "sengra-mcp": {
+      "url": "http://localhost:3000/api/mcp"
+    }
+  }
+}
