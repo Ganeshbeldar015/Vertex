@@ -1,0 +1,20 @@
+{
+  "task_id": "T-0003",
+  "from": "reviewer",
+  "to": "qa",
+  "artifact": "harness/artifacts/T-0003/06-review.md",
+  "status": "complete",
+  "summary": "Completed code and security reviews. 0 BLOCKER, 0 MAJOR issues. Parameterized queries verified, action approval state machine confirmed.",
+  "inputs_consumed": ["03-plan.md", "05-build-main.md"],
+  "acceptance_refs": ["AC-003-a", "AC-003-b", "AC-003-c", "AC-003-d", "AC-003-e"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0003/06-review.md",
+    "harness/artifacts/T-0003/06b-security.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role reviewer --files harness/artifacts/T-0003/06-review.md", "exit": 0}
+  ],
+  "next_expected_artifact": "07-qa.md"
+}

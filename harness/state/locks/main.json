@@ -1,9 +1,11 @@
 {
   "lane": "main",
-  "task": "T-0002",
+  "task": "T-0003",
   "owner": "builder",
   "owns": [
     "src/graph/**",
+    "src/actions/**",
+    "src/agent/**",
     "src/mcp/**"
   ]
 }

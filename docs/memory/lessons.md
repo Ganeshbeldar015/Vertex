@@ -9,3 +9,5 @@
 - **[L-005]** Label propagation for fraud communities -> Fast iterative label propagation reliably clusters accounts sharing devices and transaction corridors without requiring external graph libraries.
 - **[L-006]** Canonical cycle representations -> DFS cycle detection can report cyclic permutations of the same loop -> Canonicalizing cycles by rotating to the minimum node ID prevents duplicate findings.
 - **[L-007]** Descriptive commit messages -> Avoid meta terms like 'harness' or 'walking skeleton' -> Write commit messages describing the actual code, features, or files added and modified.
+- **[L-008]** High-impact actions and blast radius -> Uncontrolled autonomous agent actions can trigger false-positive account freezes -> Enforce a strict state machine where high-impact actions enter PENDING_APPROVAL, require human signoff, and support deterministic reversal (unfreeze).
+- **[L-009]** Multi-factor risk scoring calibration -> Single graph metrics produce noisy false positives -> Weight multiple independent topology signals (shared devices 35%, circular flows 30%, community density 20%, velocity 15%) for robust fraud identification.

@@ -1,4 +1,4 @@
-"""SENGRA Model Context Protocol (MCP) server implementation with full graph tool dispatch."""
+"""SENGRA Model Context Protocol (MCP) server implementation with graph, algorithm, and action tools."""
 from typing import Any
 from src.graph.engine import PropertyGraph
 from src.graph.algorithms import (
@@ -8,13 +8,16 @@ from src.graph.algorithms import (
     find_paths,
     find_shared_attributes
 )
+from src.graph.risk import compute_risk_score
+from src.actions.service import ActionService
 
 
 class SengraMCPServer:
-    """Dispatches graph investigation tools following MCP JSON-RPC patterns."""
+    """Dispatches graph investigation and action tools following MCP JSON-RPC patterns."""
 
-    def __init__(self, graph: PropertyGraph):
+    def __init__(self, graph: PropertyGraph, action_service: ActionService | None = None):
         self.graph = graph
+        self.action_service = action_service or ActionService()
 
     def list_tools(self) -> list[dict[str, Any]]:
         """Returns the discoverable tool catalog with JSON schemas."""
@@ -53,11 +56,7 @@ class SengraMCPServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "subgraph_nodes": {
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "description": "Optional list of node IDs to restrict scope"
-                        }
+                        "subgraph_nodes": {"type": "array", "items": {"type": "string"}}
                     }
                 },
                 "category": "algorithm",
@@ -84,7 +83,7 @@ class SengraMCPServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "start_node": {"type": "string", "description": "Optional starting node"},
+                        "start_node": {"type": "string"},
                         "min_length": {"type": "integer", "default": 3},
                         "max_length": {"type": "integer", "default": 6}
                     }
@@ -134,6 +133,96 @@ class SengraMCPServer:
                 },
                 "category": "query",
                 "cost": "medium"
+            },
+            {
+                "name": "algo.score_risk",
+                "description": "Calculate composite fraud risk score and feature contribution breakdown for an account.",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["account_id"],
+                    "properties": {
+                        "account_id": {"type": "string"}
+                    }
+                },
+                "category": "analytic",
+                "cost": "medium"
+            },
+            {
+                "name": "action.create_case",
+                "description": "Open an investigation case linking entities.",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["title", "entity_ids", "summary"],
+                    "properties": {
+                        "title": {"type": "string"},
+                        "entity_ids": {"type": "array", "items": {"type": "string"}},
+                        "summary": {"type": "string"}
+                    }
+                },
+                "category": "action",
+                "cost": "cheap"
+            },
+            {
+                "name": "action.flag_entity",
+                "description": "Flag an entity as suspicious (Auto-executed).",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["case_id", "entity_id", "reason"],
+                    "properties": {
+                        "case_id": {"type": "string"},
+                        "entity_id": {"type": "string"},
+                        "reason": {"type": "string"},
+                        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+                    }
+                },
+                "category": "action",
+                "cost": "cheap"
+            },
+            {
+                "name": "action.freeze_account",
+                "description": "Queue an account freeze for review/approval.",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["case_id", "account_id", "reason"],
+                    "properties": {
+                        "case_id": {"type": "string"},
+                        "account_id": {"type": "string"},
+                        "reason": {"type": "string"},
+                        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+                    }
+                },
+                "category": "action",
+                "cost": "gated"
+            },
+            {
+                "name": "action.block_device",
+                "description": "Queue a device block for review/approval.",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["case_id", "device_id", "reason"],
+                    "properties": {
+                        "case_id": {"type": "string"},
+                        "device_id": {"type": "string"},
+                        "reason": {"type": "string"},
+                        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+                    }
+                },
+                "category": "action",
+                "cost": "gated"
+            },
+            {
+                "name": "action.approve_action",
+                "description": "Approve and execute a gated action.",
+                "inputSchema": {
+                    "type": "object",
+                    "required": ["action_id", "approver_id"],
+                    "properties": {
+                        "action_id": {"type": "string"},
+                        "approver_id": {"type": "string"}
+                    }
+                },
+                "category": "action",
+                "cost": "confirm"
             }
         ]
 
@@ -208,6 +297,50 @@ class SengraMCPServer:
                 params = arguments.get("params", {})
                 rows = self.graph.query(query_str, params=params)
                 return {"status": "ok", "result": rows}
+
+            elif tool_name == "algo.score_risk":
+                account_id = arguments.get("account_id")
+                if not account_id:
+                    return {"status": "error", "error": "Missing required argument 'account_id'"}
+                result = compute_risk_score(self.graph, account_id)
+                return {"status": "ok", "result": result}
+
+            elif tool_name == "action.create_case":
+                title = arguments.get("title", "Investigation Case")
+                entity_ids = arguments.get("entity_ids", [])
+                summary = arguments.get("summary", "")
+                case_id = self.action_service.create_case(title, entity_ids, summary)
+                return {"status": "ok", "result": {"case_id": case_id}}
+
+            elif tool_name == "action.flag_entity":
+                case_id = arguments.get("case_id", "")
+                entity_id = arguments.get("entity_id", "")
+                reason = arguments.get("reason", "")
+                evidence_ids = arguments.get("evidence_ids", [])
+                record = self.action_service.flag_entity(case_id, entity_id, reason, evidence_ids)
+                return {"status": "ok", "result": record}
+
+            elif tool_name == "action.freeze_account":
+                case_id = arguments.get("case_id", "")
+                account_id = arguments.get("account_id", "")
+                reason = arguments.get("reason", "")
+                evidence_ids = arguments.get("evidence_ids", [])
+                record = self.action_service.freeze_account(case_id, account_id, reason, evidence_ids)
+                return {"status": "ok", "result": record}
+
+            elif tool_name == "action.block_device":
+                case_id = arguments.get("case_id", "")
+                device_id = arguments.get("device_id", "")
+                reason = arguments.get("reason", "")
+                evidence_ids = arguments.get("evidence_ids", [])
+                record = self.action_service.block_device(case_id, device_id, reason, evidence_ids)
+                return {"status": "ok", "result": record}
+
+            elif tool_name == "action.approve_action":
+                action_id = arguments.get("action_id", "")
+                approver_id = arguments.get("approver_id", "")
+                record = self.action_service.approve_action(action_id, approver_id)
+                return {"status": "ok", "result": record}
 
             return {"status": "error", "error": f"Unknown tool '{tool_name}'"}
 

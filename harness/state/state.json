@@ -7,35 +7,41 @@
     "harness_md_sha": "d50d43c4986f3dcf4a2959bcf6fee87c644b7b6dce9a760a100e02e3c1585426"
   },
   "mode": "EXECUTE",
-  "sprint": 2,
-  "task_id": "T-0002",
-  "current_stage": "done",
+  "sprint": 3,
+  "task_id": "T-0003",
+  "current_stage": "complete",
   "stages": {
-    "spec": "done",
-    "design": "done",
-    "plan": "done",
-    "tests": "done",
-    "build": "done",
-    "review": "done",
-    "security": "done",
-    "qa": "done",
-    "docs": "done"
+    "spec": "complete",
+    "design": "complete",
+    "plan": "complete",
+    "tests": "complete",
+    "build": "complete",
+    "review": "complete",
+    "security": "complete",
+    "qa": "complete",
+    "docs": "complete"
   },
   "lanes": [],
   "attempts": {
     "spec": 1,
+    "design": 1,
+    "plan": 1,
+    "tests": 1,
     "build": 1,
-    "qa": 1
+    "review": 1,
+    "security": 1,
+    "qa": 1,
+    "docs": 1
   },
   "last_commit": "042f5cad2a5c5b42d7033d18242ebb3a81a76472",
   "last_gate": {
     "name": "G4",
     "status": "pass",
-    "at": "2026-10-18T12:32:00Z"
+    "at": "2026-10-18T12:44:00Z"
   },
   "breaker": {
     "tripped": false,
     "reason": null
   },
-  "updated_at": "2026-10-18T12:00:00Z"
+  "updated_at": "2026-10-18T12:44:00Z"
 }
