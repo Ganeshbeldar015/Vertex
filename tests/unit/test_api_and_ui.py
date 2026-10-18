@@ -23,6 +23,18 @@ def test_app():
     return TestClient(app)
 
 
+def test_root_and_health_endpoints(test_app):
+    root_resp = test_app.get("/")
+    assert root_resp.status_code == 200
+    data = root_resp.json()
+    assert data["status"] == "online"
+    assert "endpoints" in data
+
+    health_resp = test_app.get("/health")
+    assert health_resp.status_code == 200
+    assert health_resp.json()["status"] == "healthy"
+
+
 def test_get_alerts_endpoint(test_app):
     response = test_app.get("/api/alerts")
     assert response.status_code == 200

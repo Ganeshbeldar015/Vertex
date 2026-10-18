@@ -94,6 +94,30 @@ def create_app(
 
     cases: dict[str, dict[str, Any]] = {}
 
+    @app.get("/")
+    def root():
+        """Root endpoint confirming API is running and linking to documentation and endpoints."""
+        return {
+            "status": "online",
+            "service": "GraphSleuth Investigation API",
+            "version": "0.4.0",
+            "documentation": "/docs",
+            "endpoints": {
+                "alerts": "/api/alerts",
+                "investigate": "/api/investigate",
+                "actions": "/api/actions",
+                "cases": "/api/cases/{case_id}",
+                "export": "/api/cases/{case_id}/export",
+                "health": "/health",
+            },
+            "frontend_ui": "http://localhost:3000",
+        }
+
+    @app.get("/health")
+    def health():
+        """Health check endpoint for service monitoring."""
+        return {"status": "healthy"}
+
     @app.get("/api/alerts")
     def get_alerts():
         """Returns the current prioritized fraud alert queue."""
