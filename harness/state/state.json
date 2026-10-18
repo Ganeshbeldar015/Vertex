@@ -17,11 +17,11 @@
   "attempts": {
     "scaffold": 1
   },
-  "last_commit": "",
+  "last_commit": "45ed3a7dc0afffbdc33469ccb1a6261a636a4b22",
   "last_gate": {
     "name": "G0",
-    "status": "pending",
-    "at": "2026-10-18T12:00:00Z"
+    "status": "pass",
+    "at": "2026-10-18T12:13:30Z"
   },
   "breaker": {
     "tripped": false,
