@@ -276,3 +276,7 @@ def create_app(
             raise HTTPException(status_code=400, detail=str(e))
 
     return app
+
+
+# Default application instance for standard uvicorn invocation (uvicorn src.api.server:app)
+app = create_app()
