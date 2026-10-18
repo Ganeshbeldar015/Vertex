@@ -1,0 +1,15 @@
+{
+  "task_id": "T-0002",
+  "from": "po-spec",
+  "to": "designer",
+  "artifact": "harness/artifacts/T-0002/01-spec.md",
+  "status": "complete",
+  "summary": "Completed specification for T-0002 Core Graph Algorithms & MCP Tools across 5 acceptance criteria (AC-002-b through AC-002-f).",
+  "inputs_consumed": ["docs/harness.md", "harness/tasks/T-0002.md"],
+  "acceptance_refs": ["AC-002-b", "AC-002-c", "AC-002-d", "AC-002-e", "AC-002-f"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-004"],
+  "files_touched": ["harness/artifacts/T-0002/01-spec.md"],
+  "checks_run": [{"cmd": "python scripts/guard_paths.py --role po-spec", "exit": 0}],
+  "next_expected_artifact": "02-design.md"
+}

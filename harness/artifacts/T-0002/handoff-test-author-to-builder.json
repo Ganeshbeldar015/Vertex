@@ -1,0 +1,18 @@
+{
+  "task_id": "T-0002",
+  "from": "test-author",
+  "to": "builder",
+  "artifact": "harness/artifacts/T-0002/04-tests.md",
+  "status": "complete",
+  "summary": "Authored unit tests in tests/unit/test_graph_algorithms.py covering AC-002-b through AC-002-f and MCP contracts. Red failure confirmed.",
+  "inputs_consumed": ["01-spec.md", "03-plan.md"],
+  "acceptance_refs": ["AC-002-b", "AC-002-c", "AC-002-d", "AC-002-e", "AC-002-f"],
+  "open_questions": [],
+  "assumptions": ["ASM-001"],
+  "files_touched": ["tests/unit/test_graph_algorithms.py", "harness/artifacts/T-0002/04-tests.md"],
+  "checks_run": [
+    {"cmd": "pytest tests/unit/test_graph_algorithms.py", "exit": 1},
+    {"cmd": "python scripts/guard_paths.py --role test-author", "exit": 0}
+  ],
+  "next_expected_artifact": "05-build-main.md"
+}

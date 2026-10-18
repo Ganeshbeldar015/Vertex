@@ -1,0 +1,22 @@
+{
+  "task_id": "T-0002",
+  "from": "builder",
+  "to": "reviewer",
+  "artifact": "harness/artifacts/T-0002/05-build-main.md",
+  "status": "complete",
+  "summary": "Implemented 6 graph algorithms and MCP tools in src/graph/algorithms.py and src/mcp/server.py. All 7 unit tests green in 0.05s. Parameter safety enforced.",
+  "inputs_consumed": ["03-plan.md", "04-tests.md"],
+  "acceptance_refs": ["AC-002-b", "AC-002-c", "AC-002-d", "AC-002-e", "AC-002-f"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-004"],
+  "files_touched": [
+    "src/graph/algorithms.py",
+    "src/mcp/server.py",
+    "harness/artifacts/T-0002/05-build-main.md"
+  ],
+  "checks_run": [
+    {"cmd": "pytest tests/unit/test_graph_algorithms.py", "exit": 0},
+    {"cmd": "python scripts/guard_paths.py --role builder", "exit": 0}
+  ],
+  "next_expected_artifact": "06-review.md"
+}

@@ -1,0 +1,15 @@
+{
+  "task_id": "T-0002",
+  "from": "designer",
+  "to": "tech-lead",
+  "artifact": "harness/artifacts/T-0002/02-design.md",
+  "status": "complete",
+  "summary": "Designed 6 MCP tools: algo.detect_communities, algo.rank_centrality, algo.detect_cycles, graph.find_paths, graph.shared_attributes, and graph.run_readonly_cypher with strict JSON schemas.",
+  "inputs_consumed": ["01-spec.md"],
+  "acceptance_refs": ["AC-002-b", "AC-002-c", "AC-002-d", "AC-002-e", "AC-002-f"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-004"],
+  "files_touched": ["harness/artifacts/T-0002/02-design.md"],
+  "checks_run": [{"cmd": "python scripts/guard_paths.py --role designer", "exit": 0}],
+  "next_expected_artifact": "03-plan.md"
+}

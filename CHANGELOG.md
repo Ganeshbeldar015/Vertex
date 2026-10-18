@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] - 2026-10-18
+### Added
+- Core graph algorithms module (`src/graph/algorithms.py`):
+  - `algo.detect_communities`: Label propagation community detection clustering fraud rings.
+  - `algo.rank_centrality`: PageRank centrality scoring money hubs and transaction routers.
+  - `algo.detect_cycles`: DFS cycle detector isolating circular money laundering loops.
+  - `graph.find_paths`: BFS shortest pathfinder across multi-hop relationships.
+  - `graph.shared_attributes`: Inverted attribute index linking accounts sharing devices/IPs.
+  - `graph.run_readonly_cypher`: Guarded Cypher query tool with active mutation blocking.
+- Unit tests in `tests/unit/test_graph_algorithms.py` covering all algorithmic acceptance criteria.
+
 ## [0.1.0] - 2026-10-18
 ### Added
 - Harness infrastructure (G0–G5 gates, path guard, circuit breaker, `.mcp.json`).

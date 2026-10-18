@@ -1,12 +1,9 @@
 {
   "lane": "main",
-  "task": "T-0001",
+  "task": "T-0002",
   "owner": "builder",
   "owns": [
     "src/graph/**",
-    "src/data/**",
-    "src/mcp/**",
-    "src/agent/**",
-    "src/__init__.py"
+    "src/mcp/**"
   ]
 }
