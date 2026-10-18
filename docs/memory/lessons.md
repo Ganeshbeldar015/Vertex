@@ -8,3 +8,4 @@
 - **[L-004]** Automated citation verification -> LLMs can hallucinate non-existent accounts -> Extracting entity tokens from rationales and asserting set containment against observed tool subgraphs provides 100% deterministic faithfulness.
 - **[L-005]** Label propagation for fraud communities -> Fast iterative label propagation reliably clusters accounts sharing devices and transaction corridors without requiring external graph libraries.
 - **[L-006]** Canonical cycle representations -> DFS cycle detection can report cyclic permutations of the same loop -> Canonicalizing cycles by rotating to the minimum node ID prevents duplicate findings.
+- **[L-007]** Descriptive commit messages -> Avoid meta terms like 'harness' or 'walking skeleton' -> Write commit messages describing the actual code, features, or files added and modified.

@@ -3,18 +3,15 @@
 > Specifies commit message conventions, branching rules, and parallel worktree isolation.
 
 ## 1. Commit Message Convention
-Follow Conventional Commits: `<type>(<scope>): <short description>`
-- `feat`: New functional capability
-- `fix`: Bug fix
-- `test`: Adding or modifying tests
-- `refactor`: Code change that neither fixes a bug nor adds a feature
-- `chore`: Tooling, harness, dependencies, or configuration changes
-- `docs`: Documentation updates
-
-Examples:
-- `chore(harness): scaffold sprint 0 infrastructure`
-- `feat(graph): implement Louvain community detection MCP tool`
-- `test(agent): add test for 4-hop circular flow detection`
+Follow Conventional Commits: `<type>(<scope>): <descriptive summary of what changed>`
+- Commit messages must directly describe the concrete functionality or files added/modified.
+- Avoid abstract meta terms (such as "harness", "walking skeleton").
+- Examples:
+  - `feat(graph): implement Louvain community detection and PageRank centrality`
+  - `feat(mcp): add cycle detection and shared attributes tools`
+  - `feat(actions): add account freeze and device block approval service`
+  - `test(algorithms): add tests for circular transfer loops`
+  - `docs(readme): update setup commands and architecture overview`
 
 ## 2. Branching & Parallel Lanes
 - Main development branch: `main`.
