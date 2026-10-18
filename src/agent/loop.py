@@ -105,20 +105,27 @@ class InvestigationAgent:
         linked_accounts = [a for a in accounts if a != target_account_id]
 
         is_fraud_ring = (
-            len(shared_devices_found) > 0 and
-            len(cycles_found) > 0 and
-            risk_data.get("risk_score", 0.0) >= 0.70
+            (len(shared_devices_found) > 0 or len(cycles_found) > 0) and
+            risk_data.get("risk_score", 0.0) >= 0.50
         )
 
         if is_fraud_ring:
             verdict = "fraud_ring_detected"
             confidence = risk_data.get("risk_score", 0.88)
-            shared_dev_id = shared_devices_found[0]["attribute_id"] if shared_devices_found else devices[0]
-            linked_str = ", ".join(linked_accounts)
-            rationale = (
-                f"Account {target_account_id} shares device {shared_dev_id} with {linked_str}. "
-                f"Transfers complete a circular money flow among {linked_str} and {target_account_id}."
-            )
+            discovered_entities.update(accounts)
+            discovered_entities.update(devices)
+
+            parts = []
+            if shared_devices_found:
+                shared_dev_id = shared_devices_found[0]["attribute_id"]
+                linked_str = ", ".join(linked_accounts)
+                parts.append(f"Account {target_account_id} shares device {shared_dev_id} with {linked_str}.")
+            if cycles_found:
+                linked_str = ", ".join(linked_accounts)
+                parts.append(f"Transfers complete a circular money flow among {linked_str} and {target_account_id}.")
+            if not parts:
+                parts.append(f"Account {target_account_id} exhibits anomalous fraud risk.")
+            rationale = " ".join(parts)
 
             # Recommend actions per decision policy
             recommended_actions.append({
@@ -132,7 +139,7 @@ class InvestigationAgent:
                     "type": "FREEZE_ACCOUNT",
                     "target": acc,
                     "tier": "PENDING_APPROVAL",
-                    "reason": "Participant in circular money mule chain"
+                    "reason": "Participant in fraud cluster"
                 })
             recommended_actions.append({
                 "type": "FREEZE_ACCOUNT",
@@ -140,12 +147,13 @@ class InvestigationAgent:
                 "tier": "PENDING_APPROVAL",
                 "reason": "Primary suspect in fraud ring alert"
             })
-            recommended_actions.append({
-                "type": "BLOCK_DEVICE",
-                "target": shared_dev_id,
-                "tier": "PENDING_APPROVAL",
-                "reason": f"Device shared across {len(accounts)} accounts in fraud cluster"
-            })
+            if devices:
+                recommended_actions.append({
+                    "type": "BLOCK_DEVICE",
+                    "target": devices[0],
+                    "tier": "PENDING_APPROVAL",
+                    "reason": f"Device associated with fraud cluster"
+                })
         else:
             verdict = "inconclusive"
             confidence = risk_data.get("risk_score", 0.35)

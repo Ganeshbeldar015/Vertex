@@ -1,0 +1,22 @@
+{
+  "task_id": "T-0005",
+  "from": "test-author",
+  "to": "builder",
+  "artifact": "harness/artifacts/T-0005/04-tests.md",
+  "status": "complete",
+  "summary": "Authored unit and integration test suites in tests/unit/test_evaluation_and_benchmark.py and tests/integration/test_end_to_end_investigation.py. Red run confirmed.",
+  "inputs_consumed": ["01-spec.md", "03-plan.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "tests/unit/test_evaluation_and_benchmark.py",
+    "tests/integration/test_end_to_end_investigation.py",
+    "harness/artifacts/T-0005/04-tests.md"
+  ],
+  "checks_run": [
+    {"cmd": "python -m pytest tests/unit/test_evaluation_and_benchmark.py", "exit": 1},
+    {"cmd": "python scripts/guard_paths.py --role test-author --files tests/unit/test_evaluation_and_benchmark.py tests/integration/test_end_to_end_investigation.py harness/artifacts/T-0005/04-tests.md", "exit": 0}
+  ],
+  "next_expected_artifact": "05-build-main.md"
+}

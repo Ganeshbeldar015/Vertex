@@ -1,0 +1,20 @@
+{
+  "task_id": "T-0005",
+  "from": "reviewer",
+  "to": "qa",
+  "artifact": "harness/artifacts/T-0005/06-review.md",
+  "status": "complete",
+  "summary": "Completed review of benchmark harness, vector-RAG comparison experiment, and blast-radius cap. 0 BLOCKER, 0 MAJOR findings. Parameter safety and secret scanning verified clean.",
+  "inputs_consumed": ["03-plan.md", "05-build-main.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0005/06-review.md",
+    "harness/artifacts/T-0005/06b-security.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role reviewer --files harness/artifacts/T-0005/06-review.md", "exit": 0}
+  ],
+  "next_expected_artifact": "07-qa.md"
+}

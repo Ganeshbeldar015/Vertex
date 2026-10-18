@@ -1,0 +1,19 @@
+{
+  "task_id": "T-0005",
+  "from": "designer",
+  "to": "tech-lead",
+  "artifact": "harness/artifacts/T-0005/02-design.md",
+  "status": "complete",
+  "summary": "Designed benchmark ground-truth dataset generator, precision/recall/F1 metrics evaluation engine, Vector-RAG comparison experiment, and blast-radius cap.",
+  "inputs_consumed": ["01-spec.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0005/02-design.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role designer --files harness/artifacts/T-0005/02-design.md", "exit": 0}
+  ],
+  "next_expected_artifact": "03-plan.md"
+}

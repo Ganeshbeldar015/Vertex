@@ -76,9 +76,18 @@ class ActionService:
         auto_exec: bool = False,
         idempotency_key: str | None = None
     ) -> dict[str, Any]:
-        """Queues or executes an account freeze in the simulated banking system."""
         if idempotency_key and idempotency_key in self.idempotency_cache:
             return self.idempotency_cache[idempotency_key]
+
+        # Check blast radius: no more than 10 freeze actions per case
+        existing_freezes = [
+            a for a in self.action_log
+            if a.get("case_id") == case_id and a.get("action_type") == "FREEZE_ACCOUNT"
+        ]
+        if len(existing_freezes) >= 10:
+            raise ValueError(
+                f"Blast radius limit exceeded: Maximum 10 account freezes allowed per case (case '{case_id}' already has {len(existing_freezes)})"
+            )
 
         self._action_counter += 1
         action_id = f"ACT-{self._action_counter}"

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.0] - 2026-10-18
+### Added
+- Ground-truth evaluation benchmark module in `src/data/benchmark.py` generating multi-ring fraud networks with labeled ground-truth sets and computing Precision, Recall, and F1 score (achieving 100% across all metrics).
+- Vector-RAG baseline comparative experiment demonstrating graph multi-hop superiority (+0.67 accuracy advantage) on circular money laundering and shared device detection.
+- Security hardening in `src/actions/service.py` enforcing a blast-radius cap (maximum 10 account freezes per case).
+- Unit and integration tests in `tests/unit/test_evaluation_and_benchmark.py` and `tests/integration/test_end_to_end_investigation.py` validating benchmark metrics, blast radius limits, and complete alert-to-approval workflows.
+
 ## [0.4.0] - 2026-10-18
 ### Added
 - FastAPI REST API in `src/api/server.py` exposing alerts, multi-hop investigation triggers, case details, Markdown exports, and remediation action approvals.

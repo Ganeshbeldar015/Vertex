@@ -1,0 +1,21 @@
+{
+  "task_id": "T-0005",
+  "from": "scribe",
+  "to": "librarian",
+  "artifact": "harness/artifacts/T-0005/08-docs.md",
+  "status": "complete",
+  "summary": "Documented benchmark evaluation results (100% precision/recall/F1), vector-RAG comparison, and blast-radius cap. Updated README.md and CHANGELOG.md for v0.5.0.",
+  "inputs_consumed": ["01-spec.md", "07-qa.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "README.md",
+    "CHANGELOG.md",
+    "harness/artifacts/T-0005/08-docs.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role scribe --files README.md CHANGELOG.md harness/artifacts/T-0005/08-docs.md", "exit": 0}
+  ],
+  "next_expected_artifact": "docs/memory/lessons.md"
+}

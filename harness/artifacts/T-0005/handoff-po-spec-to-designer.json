@@ -1,0 +1,20 @@
+{
+  "task_id": "T-0005",
+  "from": "po-spec",
+  "to": "designer",
+  "artifact": "harness/artifacts/T-0005/01-spec.md",
+  "status": "complete",
+  "summary": "Defined requirements for ground-truth benchmark evaluation (>= 85% F1), Vector-RAG comparison experiment, and blast-radius security limits.",
+  "inputs_consumed": ["harness/tasks/T-0005.md", "docs/harness.md", "docs/raw.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/tasks/T-0005.md",
+    "harness/artifacts/T-0005/01-spec.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role po-spec --files harness/tasks/T-0005.md harness/artifacts/T-0005/01-spec.md", "exit": 0}
+  ],
+  "next_expected_artifact": "02-design.md"
+}

@@ -1,0 +1,23 @@
+{
+  "task_id": "T-0005",
+  "from": "builder",
+  "to": "reviewer",
+  "artifact": "harness/artifacts/T-0005/05-build-main.md",
+  "status": "complete",
+  "summary": "Implemented benchmark evaluation harness, Vector-RAG comparison experiment, and blast-radius cap. All 48 tests pass.",
+  "inputs_consumed": ["03-plan.md", "04-tests.md"],
+  "acceptance_refs": ["AC-011-a", "AC-012-a", "AC-013-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "src/data/benchmark.py",
+    "src/actions/service.py",
+    "src/agent/loop.py",
+    "harness/artifacts/T-0005/05-build-main.md"
+  ],
+  "checks_run": [
+    {"cmd": "python -m pytest tests/unit/test_evaluation_and_benchmark.py tests/integration/test_end_to_end_investigation.py", "exit": 0},
+    {"cmd": "python scripts/guard_paths.py --role builder --files src/data/benchmark.py src/actions/service.py src/agent/loop.py harness/artifacts/T-0005/05-build-main.md", "exit": 0}
+  ],
+  "next_expected_artifact": "06-review.md"
+}
