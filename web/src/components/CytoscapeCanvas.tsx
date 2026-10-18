@@ -45,22 +45,22 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
         {
           selector: "node",
           style: {
-            "background-color": "#181822",
+            "background-color": "#f1f5f9",
             label: "data(label)",
-            color: "#f3f4f6",
+            color: "#1e293b",
             "font-size": "11px",
             "text-valign": "bottom",
             "text-margin-y": 6,
             width: 36,
             height: 36,
             "border-width": 2,
-            "border-color": "#3b000d",
+            "border-color": "#94a3b8",
           },
         },
         {
           selector: 'node[type = "Account"]',
           style: {
-            "background-color": "#1c1c28",
+            "background-color": "#ffffff",
             "border-color": "#800020",
             "border-width": 2.5,
             shape: "ellipse",
@@ -69,7 +69,7 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
         {
           selector: 'node[type = "Device"]',
           style: {
-            "background-color": "#3b000d",
+            "background-color": "#fdf2f4",
             "border-color": "#9c1737",
             "border-width": 2,
             shape: "diamond",
@@ -81,7 +81,7 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
           selector: "node[?is_ring]",
           style: {
             "background-color": "#800020",
-            "border-color": "#ff4d6d",
+            "border-color": "#e11d48",
             "border-width": 4,
             color: "#ffffff",
             "font-weight": "bold",
@@ -93,13 +93,13 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
           selector: "edge",
           style: {
             width: 2,
-            "line-color": "#2a2a3a",
-            "target-arrow-color": "#2a2a3a",
+            "line-color": "#cbd5e1",
+            "target-arrow-color": "#94a3b8",
             "target-arrow-shape": "triangle",
             "curve-style": "bezier",
             label: "data(label)",
             "font-size": "9px",
-            color: "#9ca3af",
+            color: "#64748b",
             "text-rotation": "autorotate",
             "text-margin-y": -6,
           },
@@ -108,9 +108,9 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
           selector: "edge[?is_ring]",
           style: {
             width: 3,
-            "line-color": "#e11d48",
-            "target-arrow-color": "#e11d48",
-            color: "#ff758f",
+            "line-color": "#dc2626",
+            "target-arrow-color": "#dc2626",
+            color: "#991b1b",
           },
         },
       ],
@@ -167,32 +167,32 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
   };
 
   return (
-    <div className="relative w-full h-full bg-obsidian-950 border border-maroon-900/40 rounded-xl overflow-hidden flex flex-col shadow-xl">
-      <div className="absolute top-3 left-3 z-10 flex items-center space-x-2 bg-obsidian-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-maroon-800/40 shadow-maroon-subtle">
-        <Shield className="w-4 h-4 text-rose-400" />
-        <span className="text-xs font-semibold text-slate-200">Fraud Topology Graph</span>
-        <span className="text-[11px] text-slate-400 font-mono">({elements.nodes.length} nodes, {elements.edges.length} edges)</span>
+    <div className="relative w-full h-full bg-white border border-slate-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+      <div className="absolute top-3 left-3 z-10 flex items-center space-x-2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-slate-200 shadow-sm">
+        <Shield className="w-4 h-4 text-maroon-700" />
+        <span className="text-xs font-semibold text-slate-800">Fraud Topology Graph</span>
+        <span className="text-[11px] text-slate-500 font-mono">({elements.nodes.length} nodes, {elements.edges.length} edges)</span>
       </div>
 
-      <div className="absolute top-3 right-3 z-10 flex space-x-1.5 bg-obsidian-900/90 backdrop-blur-md p-1 rounded-lg border border-maroon-800/40">
+      <div className="absolute top-3 right-3 z-10 flex space-x-1.5 bg-white/95 backdrop-blur-md p-1 rounded-lg border border-slate-200 shadow-sm">
         <button
           onClick={handleZoomIn}
           title="Zoom In"
-          className="p-1.5 hover:bg-maroon-950 text-slate-300 hover:text-rose-200 rounded transition"
+          className="p-1.5 hover:bg-slate-100 text-slate-600 hover:text-maroon-800 rounded transition"
         >
           <ZoomIn className="w-4 h-4" />
         </button>
         <button
           onClick={handleZoomOut}
           title="Zoom Out"
-          className="p-1.5 hover:bg-maroon-950 text-slate-300 hover:text-rose-200 rounded transition"
+          className="p-1.5 hover:bg-slate-100 text-slate-600 hover:text-maroon-800 rounded transition"
         >
           <ZoomOut className="w-4 h-4" />
         </button>
         <button
           onClick={handleFit}
           title="Fit Canvas"
-          className="p-1.5 hover:bg-maroon-950 text-slate-300 hover:text-rose-200 rounded transition"
+          className="p-1.5 hover:bg-slate-100 text-slate-600 hover:text-maroon-800 rounded transition"
         >
           <Maximize2 className="w-4 h-4" />
         </button>
@@ -201,23 +201,23 @@ export const CytoscapeCanvas: React.FC<CytoscapeCanvasProps> = ({ elements, onSe
       <div ref={containerRef} className="w-full h-full min-h-[480px]" />
 
       {selectedElement && (
-        <div className="absolute bottom-3 left-3 right-3 z-10 bg-obsidian-900/95 backdrop-blur-md p-3.5 rounded-lg border border-maroon-600/70 shadow-maroon-glow max-w-md">
+        <div className="absolute bottom-3 left-3 right-3 z-10 bg-white/95 backdrop-blur-md p-3.5 rounded-lg border border-maroon-200 shadow-xl max-w-md">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-bold text-rose-300 font-mono">{selectedElement.id}</span>
-            <span className="text-[11px] px-2 py-0.5 rounded bg-obsidian-950 text-slate-300 border border-maroon-900/50">
+            <span className="text-xs font-bold text-maroon-900 font-mono">{selectedElement.id}</span>
+            <span className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
               {selectedElement.type}
             </span>
           </div>
-          <div className="text-xs text-slate-300 space-y-1">
+          <div className="text-xs text-slate-700 space-y-1">
             <div>
               Risk Score:{" "}
-              <span className="font-bold font-mono text-rose-400">
+              <span className="font-bold font-mono text-red-600">
                 {selectedElement.risk_score !== undefined ? `${(selectedElement.risk_score * 100).toFixed(0)}%` : "N/A"}
               </span>
             </div>
             {selectedElement.is_ring && (
-              <div className="text-rose-400 font-semibold flex items-center space-x-1">
-                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse inline-block mr-1" />
+              <div className="text-red-700 font-semibold flex items-center space-x-1">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse inline-block mr-1" />
                 <span>Confirmed Laundering Ring Member</span>
               </div>
             )}

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #070709;
-  --foreground: #f3f4f6;
+  --background: #ffffff;
+  --foreground: #0f172a;
 }
 
 body {
@@ -14,20 +14,20 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Obsidian & Maroon Scrollbars */
+/* Custom Clean Scrollbars with Maroon accent */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0c0c10;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b000d;
+  background: #cbd5e1;
   border-radius: 9999px;
-  border: 1px solid rgba(128, 0, 32, 0.3);
+  border: 1px solid #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
