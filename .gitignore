@@ -17,6 +17,7 @@ ENV/
 node_modules/
 .next/
 out/
+*.tsbuildinfo
 
 # Environment and secrets
 .env

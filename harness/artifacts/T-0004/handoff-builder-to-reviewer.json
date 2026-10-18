@@ -1,0 +1,30 @@
+{
+  "task_id": "T-0004",
+  "from": "builder",
+  "to": "reviewer",
+  "artifact": "harness/artifacts/T-0004/05-build-main.md",
+  "status": "complete",
+  "summary": "Implemented FastAPI endpoints in src/api/server.py and complete Next.js / Cytoscape Analyst UI in web/. All 43 tests pass; Next.js builds cleanly.",
+  "inputs_consumed": ["03-plan.md", "04-tests.md"],
+  "acceptance_refs": ["AC-009-a", "AC-010-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "src/api/server.py",
+    "src/api/formatters.py",
+    "web/src/components/AlertQueue.tsx",
+    "web/src/components/CytoscapeCanvas.tsx",
+    "web/src/components/AgentTimeline.tsx",
+    "web/src/components/ActionApprovalPanel.tsx",
+    "web/src/components/CaseReportModal.tsx",
+    "web/src/pages/index.tsx",
+    "harness/artifacts/T-0004/05-build-main.md"
+  ],
+  "checks_run": [
+    {"cmd": "python -m pytest tests/unit/test_api_and_ui.py", "exit": 0},
+    {"cmd": "npm --prefix web run build", "exit": 0},
+    {"cmd": "npm --prefix web run type-check", "exit": 0},
+    {"cmd": "npm --prefix web run lint", "exit": 0}
+  ],
+  "next_expected_artifact": "06-review.md"
+}

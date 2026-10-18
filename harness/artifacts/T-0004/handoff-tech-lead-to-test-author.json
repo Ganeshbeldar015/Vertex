@@ -1,0 +1,19 @@
+{
+  "task_id": "T-0004",
+  "from": "tech-lead",
+  "to": "test-author",
+  "artifact": "harness/artifacts/T-0004/03-plan.md",
+  "status": "complete",
+  "summary": "Decomposed task into api-core, web-ui, and automated verification lanes with specific API contracts and Cytoscape schemas.",
+  "inputs_consumed": ["01-spec.md", "02-design.md"],
+  "acceptance_refs": ["AC-009-a", "AC-010-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0004/03-plan.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role tech-lead --files harness/artifacts/T-0004/03-plan.md", "exit": 0}
+  ],
+  "next_expected_artifact": "04-tests.md"
+}

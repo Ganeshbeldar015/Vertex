@@ -1,0 +1,20 @@
+{
+  "task_id": "T-0004",
+  "from": "qa",
+  "to": "scribe",
+  "artifact": "harness/artifacts/T-0004/07-qa.md",
+  "status": "complete",
+  "summary": "Gate G4 passed. 100% acceptance criteria AC-009-a and AC-010-a verified with passing test evidence. 43/43 tests green, Next.js build clean.",
+  "inputs_consumed": ["01-spec.md", "04-tests.md", "05-build-main.md", "06-review.md", "06b-security.md"],
+  "acceptance_refs": ["AC-009-a", "AC-010-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0004/07-qa.md"
+  ],
+  "checks_run": [
+    {"cmd": "python -m pytest tests/unit/test_api_and_ui.py", "exit": 0},
+    {"cmd": "python scripts/guard_paths.py --role qa --files harness/artifacts/T-0004/07-qa.md", "exit": 0}
+  ],
+  "next_expected_artifact": "08-docs.md"
+}

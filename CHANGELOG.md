@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.0] - 2026-10-18
+### Added
+- FastAPI REST API in `src/api/server.py` exposing alerts, multi-hop investigation triggers, case details, Markdown exports, and remediation action approvals.
+- Cytoscape graph serializer in `src/api/formatters.py` formatting evidence subgraphs and highlighting fraud ring nodes and circular transaction edges.
+- Next.js / React Analyst UI in `web/` with Cytoscape canvas visualization, prioritized alert queue, live agent reasoning stepper, 1-click action approval panel, and case export modal.
+- End-to-end unit tests in `tests/unit/test_api_and_ui.py` confirming 100% citation faithfulness and approval workflow transitions.
+
 ## [0.3.0] - 2026-10-18
 ### Added
 - Composite risk scoring tool (`src/graph/risk.py`, `algo.score_risk`) evaluating shared devices, circular flows, community density, and transaction velocity.

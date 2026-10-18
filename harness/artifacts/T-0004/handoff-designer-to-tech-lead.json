@@ -1,0 +1,19 @@
+{
+  "task_id": "T-0004",
+  "from": "designer",
+  "to": "tech-lead",
+  "artifact": "harness/artifacts/T-0004/02-design.md",
+  "status": "complete",
+  "summary": "Designed REST API contract, Cytoscape evidence subgraph schema, Next.js UI component hierarchy, and approval panel workflow.",
+  "inputs_consumed": ["01-spec.md"],
+  "acceptance_refs": ["AC-009-a", "AC-010-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-003"],
+  "files_touched": [
+    "harness/artifacts/T-0004/02-design.md"
+  ],
+  "checks_run": [
+    {"cmd": "python scripts/guard_paths.py --role designer --files harness/artifacts/T-0004/02-design.md", "exit": 0}
+  ],
+  "next_expected_artifact": "03-plan.md"
+}

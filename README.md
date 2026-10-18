@@ -21,8 +21,19 @@ pytest tests/harness
 pytest tests/unit
 ```
 
-### 3. Architecture
+### 3. Run Application
+```bash
+# Start FastAPI backend API (port 8000)
+python -m uvicorn src.api.server:create_app --factory --port 8000 --reload
+
+# Start Next.js Analyst UI (port 3000)
+npm --prefix web run dev
+```
+
+### 4. Architecture
 - **Data Generator:** Seeds realistic accounts, devices, and transactions with known fraud rings.
 - **Graph Engine:** OpenCypher-compatible property graph with parameterized query execution.
-- **MCP Server:** Exposes `graph.*` tools following JSON-RPC specifications.
+- **MCP Server:** Exposes `graph.*`, `algo.*`, and `action.*` tools following JSON-RPC specifications.
 - **Agent Loop:** Autonomous investigator executing hypothesis formulation, neighborhood expansion, and citation verification.
+- **Action Service:** Gated core banking actions with approval matrix, reversibility, and immutable audit logs.
+- **Analyst Web UI:** Next.js application with Cytoscape canvas visualization, alert queue, timeline, and 1-click approvals.
