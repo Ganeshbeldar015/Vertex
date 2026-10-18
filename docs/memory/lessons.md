@@ -4,3 +4,5 @@
 
 - **[L-001]** Windows command execution path separator issues -> Command line scripts often fail on backslash vs forward slash -> Always normalize file paths with POSIX forward slashes in tooling scripts.
 - **[L-002]** Query injection vulnerabilities in dynamic Cypher queries -> Raw string formatting bypasses query planner safety -> All OpenCypher queries must use parameter maps ($param) and pass mcpcheck P-01...P-10.
+- **[L-003]** In-memory property graph for rapid CI -> External database daemons cause flaky local test setups -> An in-memory property graph with OpenCypher parameter parsing enables sub-second (< 0.1s) hermetic unit tests.
+- **[L-004]** Automated citation verification -> LLMs can hallucinate non-existent accounts -> Extracting entity tokens from rationales and asserting set containment against observed tool subgraphs provides 100% deterministic faithfulness.

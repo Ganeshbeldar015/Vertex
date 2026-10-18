@@ -276,10 +276,6 @@ flowchart TD
 
 ## 15. Open Questions
 
-*(Empty — all architectural and functional ambiguities resolved through PRD and MCP specifications.)*
-
----
-
 ## 16. Definition of Done (Global Gates)
 
 A task or sprint is strictly **Done** only when all criteria are verified:

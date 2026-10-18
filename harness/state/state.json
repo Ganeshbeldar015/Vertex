@@ -4,24 +4,34 @@
   "profile": "web-app",
   "derived_from": {
     "raw_md_sha": "57a38edec2d3d86231201eeb9c2b8932af14a6215d55b7c18be52ba79f081a0e",
-    "harness_md_sha": "39e111eeddfb6f70eaedad985e4590f84d874b5a0fe4c9336fadad1362fa7feb"
+    "harness_md_sha": "d50d43c4986f3dcf4a2959bcf6fee87c644b7b6dce9a760a100e02e3c1585426"
   },
-  "mode": "SCAFFOLD",
-  "sprint": 0,
-  "task_id": "T-0000",
-  "current_stage": "scaffold",
+  "mode": "EXECUTE",
+  "sprint": 1,
+  "task_id": "T-0001",
+  "current_stage": "done",
   "stages": {
-    "scaffold": "in_progress"
+    "spec": "done",
+    "design": "done",
+    "plan": "done",
+    "tests": "done",
+    "build": "done",
+    "review": "done",
+    "security": "done",
+    "qa": "done",
+    "docs": "done"
   },
   "lanes": [],
   "attempts": {
-    "scaffold": 1
+    "spec": 1,
+    "build": 1,
+    "qa": 1
   },
-  "last_commit": "45ed3a7dc0afffbdc33469ccb1a6261a636a4b22",
+  "last_commit": "a6c4ee6039572c219662bce811c778faec4d01db",
   "last_gate": {
-    "name": "G0",
+    "name": "G4",
     "status": "pass",
-    "at": "2026-10-18T12:13:30Z"
+    "at": "2026-10-18T12:21:00Z"
   },
   "breaker": {
     "tripped": false,

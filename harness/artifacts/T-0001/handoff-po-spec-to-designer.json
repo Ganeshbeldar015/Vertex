@@ -1,0 +1,15 @@
+{
+  "task_id": "T-0001",
+  "from": "po-spec",
+  "to": "designer",
+  "artifact": "harness/artifacts/T-0001/01-spec.md",
+  "status": "complete",
+  "summary": "Completed specification for T-0001 Walking Skeleton with 5 testable acceptance criteria covering generator, graph, MCP, agent, and citations.",
+  "inputs_consumed": ["docs/harness.md", "harness/tasks/T-0001.md"],
+  "acceptance_refs": ["AC-001-a", "AC-002-a", "AC-003-a", "AC-004-a", "AC-005-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-004"],
+  "files_touched": ["harness/artifacts/T-0001/01-spec.md"],
+  "checks_run": [{"cmd": "python scripts/guard_paths.py --role po-spec", "exit": 0}],
+  "next_expected_artifact": "02-design.md"
+}

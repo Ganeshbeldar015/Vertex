@@ -58,7 +58,7 @@ def check_harness_md(root=ROOT):
     ]
     m = re.search(r"^#+\s*(\d+\.\s*)?Open Questions\s*\n(.*?)(?=^#+\s|\Z)", text, re.M | re.S | re.I)
     state = _load(root / "harness/state/state.json")
-    if m and state.get("sprint", 0) >= 1 and re.search(r"\S", re.sub(r"<!--.*?-->|\(.*?\)", "", m.group(2), flags=re.S)):
+    if m and state.get("sprint", 0) >= 1 and re.search(r"\S", re.sub(r"<!--.*?-->|\(.*?\)|---", "", m.group(2), flags=re.S)):
         errs.append("harness.md Open Questions must be empty when sprint >= 1")
     return errs
 

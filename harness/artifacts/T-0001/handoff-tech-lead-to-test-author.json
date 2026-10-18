@@ -1,0 +1,15 @@
+{
+  "task_id": "T-0001",
+  "from": "tech-lead",
+  "to": "test-author",
+  "artifact": "harness/artifacts/T-0001/03-plan.md",
+  "status": "complete",
+  "summary": "Technical plan established with single lane 'main', module decomposition across graph, data, mcp, and agent, and test strategy for AC-001 through AC-005.",
+  "inputs_consumed": ["01-spec.md", "02-design.md"],
+  "acceptance_refs": ["AC-001-a", "AC-002-a", "AC-003-a", "AC-004-a", "AC-005-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001", "ASM-004"],
+  "files_touched": ["harness/artifacts/T-0001/03-plan.md", "harness/state/locks/main.json"],
+  "checks_run": [{"cmd": "python scripts/guard_paths.py --role tech-lead", "exit": 0}],
+  "next_expected_artifact": "04-tests.md"
+}

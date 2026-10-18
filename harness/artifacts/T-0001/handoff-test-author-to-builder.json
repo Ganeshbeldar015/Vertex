@@ -1,0 +1,18 @@
+{
+  "task_id": "T-0001",
+  "from": "test-author",
+  "to": "builder",
+  "artifact": "harness/artifacts/T-0001/04-tests.md",
+  "status": "complete",
+  "summary": "Authored unit tests in tests/unit/test_walking_skeleton.py covering AC-001 through AC-005. Verified clean Red failure on missing src modules.",
+  "inputs_consumed": ["01-spec.md", "03-plan.md"],
+  "acceptance_refs": ["AC-001-a", "AC-002-a", "AC-003-a", "AC-004-a", "AC-005-a"],
+  "open_questions": [],
+  "assumptions": ["ASM-001"],
+  "files_touched": ["tests/unit/test_walking_skeleton.py", "harness/artifacts/T-0001/04-tests.md"],
+  "checks_run": [
+    {"cmd": "pytest tests/unit/test_walking_skeleton.py", "exit": 1},
+    {"cmd": "python scripts/guard_paths.py --role test-author", "exit": 0}
+  ],
+  "next_expected_artifact": "05-build-main.md"
+}
