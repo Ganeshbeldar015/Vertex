@@ -33,7 +33,7 @@
     "qa": 1,
     "docs": 1
   },
-  "last_commit": "c414fe487e41cfa36136beec68a83d7350cb4a59",
+  "last_commit": "b8e054d",
   "last_gate": {
     "name": "G5",
     "status": "pass",
