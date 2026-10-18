@@ -35,38 +35,38 @@ export const CaseReportModal: React.FC<CaseReportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4">
-      <div className="bg-slate-900 border border-slate-700 rounded-lg max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
-        <div className="flex items-center justify-between p-4 border-b border-slate-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
+      <div className="bg-obsidian-900 border border-maroon-700/60 rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-maroon-glow">
+        <div className="flex items-center justify-between p-4 border-b border-maroon-900/50">
           <div className="flex items-center space-x-2">
-            <FileText className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-base font-semibold text-slate-100">
-              Investigation Case Report ({caseId})
+            <FileText className="w-5 h-5 text-rose-400" />
+            <h3 className="text-sm font-bold tracking-wide text-slate-100 uppercase">
+              Investigation Dossier ({caseId})
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white"
+            className="p-1 hover:bg-maroon-950 rounded text-slate-400 hover:text-white transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-4 overflow-y-auto flex-1 font-mono text-xs text-slate-300 bg-slate-950 m-4 rounded border border-slate-800 whitespace-pre-wrap">
+        <div className="p-4 overflow-y-auto flex-1 font-mono text-xs text-rose-100 bg-obsidian-950 m-4 rounded-lg border border-maroon-900/40 whitespace-pre-wrap leading-relaxed shadow-inner">
           {markdownContent}
         </div>
 
-        <div className="p-4 border-t border-slate-800 flex justify-end space-x-2 bg-slate-900/50">
+        <div className="p-4 border-t border-maroon-900/50 flex justify-end space-x-2.5 bg-obsidian-900/50">
           <button
             onClick={handleCopy}
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition"
+            className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-obsidian-850 hover:bg-maroon-950 text-rose-200 text-xs font-medium border border-maroon-800/60 transition"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? "Copied!" : "Copy Markdown"}</span>
           </button>
           <button
             onClick={handleDownload}
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-medium transition"
+            className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-maroon-800 to-rose-700 hover:from-maroon-700 hover:to-rose-600 text-white text-xs font-medium transition shadow-maroon-subtle"
           >
             <Download className="w-4 h-4" />
             <span>Download Report</span>

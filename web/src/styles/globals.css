@@ -3,12 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
+  --background: #070709;
+  --foreground: #f3f4f6;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Obsidian & Maroon Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0c10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b000d;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 32, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #800020;
+}
+
+::selection {
+  background: #800020;
+  color: #ffffff;
 }
